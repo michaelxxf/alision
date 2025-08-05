@@ -1,0 +1,8 @@
+[build]
+  publish = "."  # The root directory (where your netlify.toml is)
+  command = "echo 'No build command needed for static HTML'"  # Optional
+
+[[redirects]]
+  from = "/*"
+  to = "/alision.com/index.html"  # Replace "subfolder" with your actual folder name
+  status = 200
