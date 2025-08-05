@@ -4,5 +4,5 @@
 
 [[redirects]]
   from = "/*"
-  to = "/alision.com/index.html"  # Replace "subfolder" with your actual folder name
+  to = "/alison.com/index.html"  # Replace "subfolder" with your actual folder name
   status = 200
