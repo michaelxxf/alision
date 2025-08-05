@@ -1,8 +1,23 @@
 [build]
-  publish = "."  # The root directory (where your netlify.toml is)
-  command = "echo 'No build command needed for static HTML'"  # Optional
+  publish = "."
+  command = "echo 'No build needed for static site'"
 
+# Main redirect: All requests go to /html/index.html (but keep URL as /)
 [[redirects]]
   from = "/*"
-  to = "/alison.com/index.html"  # Replace "subfolder" with your actual folder name
+  to = "/alison.com/index.html"
   status = 200
+
+# Exclude ALL static files (images, CSS, JS, etc.) from redirects
+[[redirects]]
+  from = "/:file"  # Matches any file (e.g., /backblue.gif, /fade.gif)
+  to = "/alison.com/:file"  # Rewrites to /html/backblue.gif
+  status = 200
+  conditions = {MediaType = ["image/*", "text/css", "application/javascript"]}
+
+# Exclude external CDN paths (optional, but prevents Netlify from trying to serve them)
+[[redirects]]
+  from = "/cdnjs.cloudflare.com/*"
+  to = "https://cdnjs.cloudflare.com/:splat"  # Proxy to real CDN
+  status = 200
+  force = true
